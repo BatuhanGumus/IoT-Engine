@@ -1,12 +1,12 @@
 # IoT-Engine
-An IoT engine with a client and a server component used to handle server communication to set the states of IoT devices
-
-
-----
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](/LICENSE)
 
-### Features
+An IoT engine with a client and a server component used to handle server communication to set the states of IoT devices
+
+----
+
+## Features
 #### Server
 - Save & manipulate custom JSON's for client states
 #### Client
