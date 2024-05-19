@@ -20,8 +20,7 @@ An IoT engine with a client and a server component used to handle server communi
 ## Requirements
 
 ## Setting up the IOT Server
-#### 1. install dependencies with `npm install`
-#### 2. Create data for your client in storage.js
+#### 1. Create data for your client in storage.js
 ```js
 var storage = function() {
    this.data = {
@@ -38,7 +37,7 @@ var storage = function() {
      console.log("test function called");
  }
 ```
-#### 4. run server.js with `node server.js`
+#### 2. run server.js with `node server.js`
 
 ## Setting up the IOT client
 #### 1. install PlatformIO on VSCode to build C++ files on your ESP8266
@@ -67,24 +66,17 @@ void LightLED::OnStart()
 
 void LightLED::OnCall(JSONVar inp)
 {
-  //bool status = inp["status"];
-  bool status = true;
-
-  if(status == true)
-  {
-    digitalWrite(pin, HIGH);
-  }
-  else
-  {
-    digitalWrite(pin, LOW);
-  }
+   bool status = inp["status"];
+   if(status == true)
+      digitalWrite(pin, HIGH);
+   else
+      digitalWrite(pin, LOW);
 }
 ```
 #### 4. Create an IOT device in Constructor.cpp
 ```cpp
 const int Constructer::thingCount = 1; // Amount of internet connected proccess run in code
 IOT** Constructer::allThings = new IOT*[thingCount];
-
 void Constructer::ConstructThings()
 {
     // === construct all internet connected things ===
