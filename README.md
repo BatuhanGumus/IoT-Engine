@@ -16,8 +16,12 @@ An IoT engine with a client and a server component used to handle server communi
 - OnCall and OnUpdate for ease of hardware control
 
 ## Example use
+My goal is to have a gyro sensor on my curtain and a stepper motor turning the curtain to match the rotation I want being kept on the server
 
 ## Requirements
+1) Node JS for the server
+2) PlatformIO on VSCode for client
+3) An ESP8266 board for wifi connectivity on client
 
 ## Setting up the IOT Server
 #### 1. Create data for your client in storage.js
