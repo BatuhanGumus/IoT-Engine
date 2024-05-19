@@ -17,6 +17,8 @@ An IoT engine with a client and a server component used to handle server communi
 
 ## Example use
 
+## Requirements
+
 ## Setting up the IOT Server
 1) install dependencies with `npm install`
 2) Create data for your client in storage.js
@@ -39,6 +41,55 @@ An IoT engine with a client and a server component used to handle server communi
 4) run server.js with `node server.js`
 
 ## Setting up the IOT client
-1) Edit Constants.cpp for Wifi Connection
-2) Code custom IOT functinoality
-3) Create an IOT device in Constructor.cpp
+1) install PlatformIO on VSCode to build C++ files on your ESP8266
+2) Edit Constants.cpp for Wifi Connection
+   ```cpp
+   // =========== WIFI Details ==============
+   const char* Constants::ssid = "your-wifi-name";
+   const char* Constants::password = "your-wifi=password";
+   
+   // =========== Server Details ==============
+   const String Constants::host = "your-server-IP";
+   const int Constants::port = 8080;
+   ```
+4) Code custom IOT functinoality
+   Base a class off of the IOT class. Chech src/Components/LightLED.cpp for an example
+    ```cpp
+   LightLED::LightLED(String _nameTag, uint8_t _pin) : IOT(_nameTag)
+   {
+     this->pin = _pin;
+   }
+   
+   void LightLED::OnStart()
+   {
+     pinMode(pin, OUTPUT);
+   }
+   
+   void LightLED::OnCall(JSONVar inp)
+   {
+     //bool status = inp["status"];
+     bool status = true;
+   
+     if(status == true)
+     {
+       digitalWrite(pin, HIGH);
+     }
+     else
+     {
+       digitalWrite(pin, LOW);
+     }
+   }
+   ```
+6) Create an IOT device in Constructor.cpp
+    ```cpp
+   const int Constructer::thingCount = 1; // Amount of internet connected proccess run in code
+   IOT** Constructer::allThings = new IOT*[thingCount];
+   
+   void Constructer::ConstructThings()
+   {
+       // === construct all internet connected things ===
+       // things array = thing constructor ( name, pins to use )
+       allThings[0] = new LightLED("blueLight", 4);
+   }
+    ```
+8) Build with PlatformIO
