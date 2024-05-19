@@ -18,9 +18,25 @@ An IoT engine with a client and a server component used to handle server communi
 ## Example use
 
 ## Setting up the IOT Server
-1) install dependencies
+1) install dependencies with `npm install`
 2) Create data for your client in storage.js
-3) run server.js
+   ```js
+   var storage = function() {
+      this.data = {
+          "rgbLight": {"red": 0, "green": 0, "blue": 255},
+          "stepperMotor": {"direction": 1},
+      };
+      this.functions = {
+          "testFunction": testFunction,
+      };
+    };
+  
+    function testFunction()
+    {
+        console.log("test function called");
+    }
+   ```
+4) run server.js with `node server.js`
 
 ## Setting up the IOT client
 1) Edit Constants.cpp for Wifi Connection
